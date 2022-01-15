@@ -1,1 +1,1 @@
-# summary-react
+# the-component-lifecycle
