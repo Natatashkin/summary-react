@@ -85,10 +85,11 @@ const parsedTodos = JSON.parse(todos);
   4.Меняем разметку рендера
   <pre><code>
   render() {
-  return createPortal(
-  `<div className="Modal__backdrop" onClick={this.handleBackdropClick}>`
-  `<div className="Modal__content">{this.props.children}</div>`
-  `</div>`,
+  return createPortal(`
+  <div className="Modal__backdrop" onClick={this.handleBackdropClick}>
+  <div className="Modal__content">{this.props.children}</div>
+  </div>
+  `,
   modalRoot,
   );
   }
