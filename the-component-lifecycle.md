@@ -38,6 +38,7 @@
 [09:30](https://youtu.be/w6MW1szKuT4?t=570) - Сохранение коллекции заметок в localStorage (componentDidMount и componentDidUpdate)
 
 В componentDidUpdate можно пролучить доступ к прошлому (prevState) и текущему(this.state) значению state. Можно сравнить:
+<br/>
 <code>
 
 if(this.state.todos !== prevState.todos) {
@@ -50,6 +51,7 @@ localStorage.setItem('todos', JSON.stringify(this.state.todos));
 [16:37](https://youtu.be/w6MW1szKuT4?t=997) получаем данные из localStorage при загрузке страницы
 
 Получаем из componentDidMount()
+<br/>
 <code>
 componentDidMount() {
 const todos = localStorage.getItem('todos');
