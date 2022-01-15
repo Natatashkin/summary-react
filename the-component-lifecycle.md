@@ -1,7 +1,8 @@
-<h3>[00:25](https://youtu.be/w6MW1szKuT4?t=25) - МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</h3>
+[00:25](https://youtu.be/w6MW1szKuT4?t=25) - <strong>МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</strong>
 [Жизненный цикл компонент-классов](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 <br/>
 <strong>У каждого компонента класса есть 3 фазы жизненного цикла:</strong>
+
 1. <strong>[Монтирование](https://ru.reactjs.org/docs/react-component.html#componentdidmount)</strong> - когда компонент создаётся в первый раз и добавляется в DOM-дерево (от создания до монтирования). Выполняется 1 раз за весь жизненный цикл.
    Вызываемые методы:
 
@@ -23,7 +24,7 @@
 
 Не используйте setState() в componentWillUnmount(), так как компонент никогда не рендерится повторно. После того, как экземпляр компонента будет размонтирован, он никогда не будет примонтирован снова.
 
-<h3>[06:37](https://youtu.be/w6MW1szKuT4?t=397) - Редкие методы</h3>
+[06:37](https://youtu.be/w6MW1szKuT4?t=397) - <strong>Редкие методы</strong>
 
 - [shouldComponentUpdate()](https://ru.reactjs.org/docs/react-component.html#shouldcomponentupdate)
   Этот метод нужен только для повышения производительности.
@@ -32,7 +33,7 @@
 - [static getDerivedStateFromProps()](https://ru.reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
   Саша рекомендует не трогать.
 
-<h3>[09:30](https://youtu.be/w6MW1szKuT4?t=570) - Сохранение коллекции заметок в localStorage (componentDidMount и componentDidUpdate)</h3>
+[09:30](https://youtu.be/w6MW1szKuT4?t=570) - <strong>Сохранение коллекции заметок в localStorage (componentDidMount и componentDidUpdate)</strong>
 
 В `componentDidUpdate(prevProps, prevState, snapshot)` можно пролучить доступ к прошлому (prevState) и текущему(this.state) значению state. Можно сравнить:
 <br/>
@@ -45,7 +46,7 @@ localStorage.setItem('todos', JSON.stringify(this.state.todos));
 
 В этом методе или в render() нельзя делать setState() не внутри какого-то условия, во избежание бесконечного цикла: меняется state-> выполняется render()-> вызывается componentDidUpdate и по кругу
 
-<h3>[16:37](https://youtu.be/w6MW1szKuT4?t=997) Получаем данные из localStorage при загрузке страницы</h3>
+[16:37](https://youtu.be/w6MW1szKuT4?t=997) - <strong>Получаем данные из localStorage при загрузке страницы</strong>
 
 Получаем из `componentDidMount()`
 <br/>
@@ -61,7 +62,7 @@ const parsedTodos = JSON.parse(todos);
 }
 </code></pre>
 
-<h3>[23:53](https://youtu.be/w6MW1szKuT4?t=1373) - Модальное окно (componentDidMount и componentWillUnmount)</h3>
+[23:53](https://youtu.be/w6MW1szKuT4?t=1373) - <strong>Модальное окно (componentDidMount и componentWillUnmount)</strong>
 
 - Проблема z-index, как решать без костылей (порталы)
 - Слушатель на keydown для Escape
