@@ -1,4 +1,5 @@
 [00:25](https://youtu.be/w6MW1szKuT4?t=25) - <strong>МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</strong>
+<br/>
 [Жизненный цикл компонент-классов](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 <br/>
 <strong>У каждого компонента класса есть 3 фазы жизненного цикла:</strong>
@@ -63,10 +64,40 @@ const parsedTodos = JSON.parse(todos);
 </code></pre>
 
 [23:53](https://youtu.be/w6MW1szKuT4?t=1373) - <strong>Модальное окно (componentDidMount и componentWillUnmount)</strong>
+Стандартная разметка с бэкдопом и лайтбоксом внутри.
+В стейт добавляем свойство showModal: false и пишем обработчик, который перезаписывает состояние showModal с false на true и наоборот. Модалку рендерим по условиюЖ нажато что-то - показываем модалку.
+Компоненты модалки передаются как чилдрены через пропсы.
 
 - Проблема z-index, как решать без костылей (порталы)
+
+  1.Нужно в index.html создать портал под дивом root
+    <pre><code><div id="modal-root"></div></code></pre>
+
+  2.Создаём квери селектор на это див (не в классе!)
+  <pre><code>const modalRoot = document.querySelector('#modal-root');</code></pre>
+
+  3.Импортируем
+  <pre><code>import { createPortal } from 'react-dom';</code></pre>
+  `ReactDOM.createPortal(child, container)`
+  Создаёт портал. Порталы предоставляют способ отрендерить дочерние элементы в узле DOM, который существует вне иерархии DOM-компонента.
+
+  4.Меняем разметку рендера
+  <pre><code>
+  render() {
+  return createPortal(
+  <div className="Modal__backdrop" onClick={this.handleBackdropClick}>
+  <div className="Modal__content">{this.props.children}</div>
+  </div>,
+  modalRoot,
+  );
+  }
+  </code></pre>
+
+  В результате модалка рендериться в другом руте и решается проблема с z-index.
+
 - Слушатель на keydown для Escape
 - Слушатель на клик по Backdrop
+
 - Таймер и утечка памяти с setState() без componentWillUnmount
 - Табы (shouldComponentUpdate)
   - аналогия с колорпикером = главное знать технику
