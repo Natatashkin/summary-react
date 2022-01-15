@@ -39,20 +39,23 @@
 
 В componentDidUpdate можно пролучить доступ к прошлому (prevState) и текущему(this.state) значению state. Можно сравнить:
 <br/>
-<code>
+
+<pre><code>
 
 if(this.state.todos !== prevState.todos) {
 localStorage.setItem('todos', JSON.stringify(this.state.todos));
 };
 
-</code>
+</code></pre>
+
 В этом методе или в render() нельзя делать setState() не внутри какого-то условия, во избежание бесконечного цикла: меняется state-> выполняется render()-> вызывается componentDidUpdate и по кругу
 
 [16:37](https://youtu.be/w6MW1szKuT4?t=997) получаем данные из localStorage при загрузке страницы
 
 Получаем из componentDidMount()
 <br/>
-<code>
+
+<pre><code>
 componentDidMount() {
 const todos = localStorage.getItem('todos');
 const parsedTodos = JSON.parse(todos);
@@ -64,7 +67,7 @@ const parsedTodos = JSON.parse(todos);
     }
 
 }
-</code>
+</code></pre>
 
 - Модальное окно (componentDidMount и componentWillUnmount)
   - Проблема z-index, как решать без костылей (порталы)
