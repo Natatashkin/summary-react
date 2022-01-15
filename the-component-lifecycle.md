@@ -98,7 +98,21 @@ const parsedTodos = JSON.parse(todos);
   В результате модалка рендериться в другом руте и решается проблема с z-index.
 
 - Слушатель на keydown для Escape
+  1.В реакте нельзя повесить слушатель на window. Для этого используем componentDidMount(). Это один из немногих случаев, когда мы используем `addEventListener`
+  <pre>componentDidMount() {
+      console.log('Modal componentDidMount');
+      window.addEventListener('keydown', this.handleKeyDown);
+    }</pre>
+
+  2.Пишем обрабработчик, как метод класса Modal this.handleKeyDown на нажатие ESС. В него вставляем переключалку модалки написаную ранее как пропс. Пропс передаём в компонент модалки
+  <pre>this.props.onClose();</pre>
+
+  3.После этого модалка будет реагировать на escape даже при простом нажатии esc. Нужно снять обработчик window.addEventListener('keydown', this.handleKeyDown). Снимаем слушатель в `componentWillUnmount()`. Непочищенные слушатели валят производительность.
+
 - Слушатель на клик по Backdrop
+
+  1.Пишем обработчик и передам пропсом в бэкдроп.
+  2.Исключить клики по лайтбоксу(e.currentTarget, e.target сравнить).
 
 - Таймер и утечка памяти с setState() без componentWillUnmount
 - Табы (shouldComponentUpdate)
