@@ -1,4 +1,4 @@
-[00:25](https://youtu.be/w6MW1szKuT4?t=25) - МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА
+[00:25](https://youtu.be/w6MW1szKuT4?t=25) - <h3>МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</h3>
 <br/>
 [Жизненный цикл компонент-классов](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 <br/>
@@ -31,48 +31,43 @@
   Этот метод нужен только для повышения производительности.
 - [getSnapshotBeforeUpdate()](https://ru.reactjs.org/docs/react-component.html#getsnapshotbeforeupdate)
   Позволяет вашему компоненту брать некоторую информацию из DOM (например, положение прокрутки) перед её возможным изменением.
+- [static getDerivedStateFromProps()](https://ru.reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
+  Саша рекомендует не трогать.
 
-  - [static getDerivedStateFromProps()](https://ru.reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
-    Саша рекомендует не трогать.
+[09:30](https://youtu.be/w6MW1szKuT4?t=570) - <h3>Сохранение коллекции заметок в localStorage (componentDidMount и componentDidUpdate)</h3>
 
-[09:30](https://youtu.be/w6MW1szKuT4?t=570) - Сохранение коллекции заметок в localStorage (componentDidMount и componentDidUpdate)
-
-В componentDidUpdate можно пролучить доступ к прошлому (prevState) и текущему(this.state) значению state. Можно сравнить:
+В `componentDidUpdate(prevProps, prevState, snapshot)` можно пролучить доступ к прошлому (prevState) и текущему(this.state) значению state. Можно сравнить:
 <br/>
 
 <pre><code>
-
 if(this.state.todos !== prevState.todos) {
 localStorage.setItem('todos', JSON.stringify(this.state.todos));
 };
-
 </code></pre>
 
 В этом методе или в render() нельзя делать setState() не внутри какого-то условия, во избежание бесконечного цикла: меняется state-> выполняется render()-> вызывается componentDidUpdate и по кругу
 
-[16:37](https://youtu.be/w6MW1szKuT4?t=997) получаем данные из localStorage при загрузке страницы
+[16:37](https://youtu.be/w6MW1szKuT4?t=997) <h3>получаем данные из localStorage при загрузке страницы</h3>
 
-Получаем из componentDidMount()
+Получаем из `componentDidMount()`
 <br/>
 
 <pre><code>
 componentDidMount() {
 const todos = localStorage.getItem('todos');
 const parsedTodos = JSON.parse(todos);
-
-        // если в localStorage ничего нет, тогда parsedTodos вернёт null и сломается вся логика, потому нужно условие
-
+    // если в localStorage ничего нет, тогда parsedTodos вернёт null и сломается вся логика, потому нужно условие
     if (parsedTodos) {
         this.setState({ todos: parsedTodos }); // записываем поверх, так как в начальном стойте пустые значения
     }
-
 }
 </code></pre>
 
-- Модальное окно (componentDidMount и componentWillUnmount)
-  - Проблема z-index, как решать без костылей (порталы)
-  - Слушатель на keydown для Escape
-  - Слушатель на клик по Backdrop
+[23:53](https://youtu.be/w6MW1szKuT4?t=1373) - <h3>Модальное окно (componentDidMount и componentWillUnmount)</h3>
+
+- Проблема z-index, как решать без костылей (порталы)
+- Слушатель на keydown для Escape
+- Слушатель на клик по Backdrop
 - Таймер и утечка памяти с setState() без componentWillUnmount
 - Табы (shouldComponentUpdate)
   - аналогия с колорпикером = главное знать технику
