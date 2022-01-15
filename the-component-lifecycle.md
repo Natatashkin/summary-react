@@ -71,13 +71,14 @@ const parsedTodos = JSON.parse(todos);
 - Проблема z-index, как решать без костылей (порталы)
 
   1.Нужно в index.html создать портал под дивом root
-    <pre><code><div id="modal-root"></div></code></pre>
+  `<div id="modal-root"></div>`
 
   2.Создаём квери селектор на это див (не в классе!)
   <pre><code>const modalRoot = document.querySelector('#modal-root');</code></pre>
 
   3.Импортируем
   <pre><code>import { createPortal } from 'react-dom';</code></pre>
+
   `ReactDOM.createPortal(child, container)`
   Создаёт портал. Порталы предоставляют способ отрендерить дочерние элементы в узле DOM, который существует вне иерархии DOM-компонента.
 
@@ -85,9 +86,9 @@ const parsedTodos = JSON.parse(todos);
   <pre><code>
   render() {
   return createPortal(
-  <div className="Modal__backdrop" onClick={this.handleBackdropClick}>
-  <div className="Modal__content">{this.props.children}</div>
-  </div>,
+  `<div className="Modal__backdrop" onClick={this.handleBackdropClick}>`
+  `<div className="Modal__content">{this.props.children}</div>`
+  `</div>`,
   modalRoot,
   );
   }
