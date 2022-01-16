@@ -68,21 +68,24 @@ const parsedTodos = JSON.parse(todos);
 В стейт добавляем свойство showModal: false и пишем обработчик, который перезаписывает состояние showModal с false на true и наоборот. Модалку рендерим по условиюЖ нажато что-то - показываем модалку.
 Компоненты модалки передаются как чилдрены через пропсы.
 
-- Проблема z-index, как решать без костылей (порталы)
+[30:27](https://youtu.be/w6MW1szKuT4?t=1827)- Проблема z-index, как решать без костылей (порталы)
 
-  1.Нужно в index.html создать портал под дивом root
-  `<div id="modal-root"></div>`
+1.Нужно в index.html создать портал под дивом root
+`<div id="modal-root"></div>`
 
-  2.Создаём квери селектор на это див (не в классе!)
+2.Создаём квери селектор на это див (не в классе!)
+
   <pre><code>const modalRoot = document.querySelector('#modal-root');</code></pre>
 
-  3.Импортируем
+3.Импортируем
+
   <pre><code>import { createPortal } from 'react-dom';</code></pre>
 
-  `ReactDOM.createPortal(child, container)`
-  Создаёт портал. Порталы предоставляют способ отрендерить дочерние элементы в узле DOM, который существует вне иерархии DOM-компонента.
+`ReactDOM.createPortal(child, container)`
+Создаёт портал. Порталы предоставляют способ отрендерить дочерние элементы в узле DOM, который существует вне иерархии DOM-компонента.
 
-  4.Меняем разметку рендера
+4.Меняем разметку рендера
+
   <pre><code>
   render() {
   return createPortal(
@@ -95,24 +98,26 @@ const parsedTodos = JSON.parse(todos);
   }
   </code></pre>
 
-  В результате модалка рендериться в другом руте и решается проблема с z-index.
+В результате модалка рендериться в другом руте и решается проблема с z-index.
 
-- Слушатель на keydown для Escape
-  1.В реакте нельзя повесить слушатель на window. Для этого используем componentDidMount(). Это один из немногих случаев, когда мы используем `addEventListener`
+[30:15](https://youtu.be/w6MW1szKuT4?t=2115)- Слушатель на keydown для Escape
+1.В реакте нельзя повесить слушатель на window. Для этого используем componentDidMount(). Это один из немногих случаев, когда мы используем `addEventListener`
+
   <pre>componentDidMount() {
       console.log('Modal componentDidMount');
       window.addEventListener('keydown', this.handleKeyDown);
     }</pre>
 
-  2.Пишем обрабработчик, как метод класса Modal this.handleKeyDown на нажатие ESС. В него вставляем переключалку модалки написаную ранее как пропс. Пропс передаём в компонент модалки
+2.Пишем обрабработчик, как метод класса Modal this.handleKeyDown на нажатие ESС. В него вставляем переключалку модалки написаную ранее как пропс. Пропс передаём в компонент модалки
+
   <pre>this.props.onClose();</pre>
 
-  3.После этого модалка будет реагировать на escape даже при простом нажатии esc. Нужно снять обработчик window.addEventListener('keydown', this.handleKeyDown). Снимаем слушатель в `componentWillUnmount()`. Непочищенные слушатели валят производительность.
+3.После этого модалка будет реагировать на escape даже при простом нажатии esc. Нужно снять обработчик window.addEventListener('keydown', this.handleKeyDown). Снимаем слушатель в `componentWillUnmount()`. Непочищенные слушатели валят производительность.
 
-- Слушатель на клик по Backdrop
+[43:50](https://youtu.be/w6MW1szKuT4?t=2630)- Слушатель на клик по Backdrop
 
-  1.Пишем обработчик и передам пропсом в бэкдроп.
-  2.Исключить клики по лайтбоксу(e.currentTarget, e.target сравнить).
+1.Пишем обработчик и передам пропсом в бэкдроп.
+2.Исключить клики по лайтбоксу(e.currentTarget, e.target сравнить).
 
 - Таймер и утечка памяти с setState() без componentWillUnmount
 - Табы (shouldComponentUpdate)
