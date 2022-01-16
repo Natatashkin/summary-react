@@ -1,4 +1,6 @@
-[00:25](https://youtu.be/w6MW1szKuT4?t=25) - <strong>МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</strong>
+<a href='#1'>МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</a>
+
+[00:25](https://youtu.be/w6MW1szKuT4?t=25) - <strong id="1">МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</strong>
 <br/>
 [Жизненный цикл компонент-классов](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 <br/>
