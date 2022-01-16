@@ -1,4 +1,13 @@
-<a href='#1'>МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</a>
+<ol>
+<li><a href='#1'>МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</a></li>
+<li><a href='#2'>Редкие методы</a></li>
+<li><a href='#3'>Сохранение коллекции заметок в localStorage (componentDidMount и componentDidUpdate)</a></li>
+<li><a href='#4'>Получаем данные из localStorage при загрузке страницы</a></li>
+<li><a href='#5'>Модальное окно (componentDidMount и componentWillUnmount)</a></li>
+<li><a href='#6'>Проблема z-index, как решать без костылей (порталы)</a></li>
+<li><a href='#7'>Слушатель на keydown для Escape</a></li>
+<li><a href='#8'>Слушатель на клик по Backdrop</a></li>
+</ol>
 
 [00:25](https://youtu.be/w6MW1szKuT4?t=25) - <strong id="1">МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</strong>
 <br/>
@@ -27,7 +36,7 @@
 
 Не используйте setState() в componentWillUnmount(), так как компонент никогда не рендерится повторно. После того, как экземпляр компонента будет размонтирован, он никогда не будет примонтирован снова.
 
-[06:37](https://youtu.be/w6MW1szKuT4?t=397) - <strong>Редкие методы</strong>
+[06:37](https://youtu.be/w6MW1szKuT4?t=397) - <strong id='2'>Редкие методы</strong>
 
 - [shouldComponentUpdate()](https://ru.reactjs.org/docs/react-component.html#shouldcomponentupdate)
   Этот метод нужен только для повышения производительности.
@@ -36,7 +45,7 @@
 - [static getDerivedStateFromProps()](https://ru.reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
   Саша рекомендует не трогать.
 
-[09:30](https://youtu.be/w6MW1szKuT4?t=570) - <strong>Сохранение коллекции заметок в localStorage (componentDidMount и componentDidUpdate)</strong>
+[09:30](https://youtu.be/w6MW1szKuT4?t=570) - <strong id='3'>Сохранение коллекции заметок в localStorage (componentDidMount и componentDidUpdate)</strong>
 
 В `componentDidUpdate(prevProps, prevState, snapshot)` можно пролучить доступ к прошлому (prevState) и текущему(this.state) значению state. Можно сравнить:
 <br/>
@@ -49,7 +58,7 @@ localStorage.setItem('todos', JSON.stringify(this.state.todos));
 
 В этом методе или в render() нельзя делать setState() не внутри какого-то условия, во избежание бесконечного цикла: меняется state-> выполняется render()-> вызывается componentDidUpdate и по кругу
 
-[16:37](https://youtu.be/w6MW1szKuT4?t=997) - <strong>Получаем данные из localStorage при загрузке страницы</strong>
+[16:37](https://youtu.be/w6MW1szKuT4?t=997) - <strong id='4'>Получаем данные из localStorage при загрузке страницы</strong>
 
 Получаем из `componentDidMount()`
 <br/>
@@ -65,12 +74,12 @@ const parsedTodos = JSON.parse(todos);
 }
 </code></pre>
 
-[23:53](https://youtu.be/w6MW1szKuT4?t=1373) - <strong>Модальное окно (componentDidMount и componentWillUnmount)</strong>
+[23:53](https://youtu.be/w6MW1szKuT4?t=1373) - <strong id='5'>Модальное окно (componentDidMount и componentWillUnmount)</strong>
 Стандартная разметка с бэкдопом и лайтбоксом внутри.
 В стейт добавляем свойство showModal: false и пишем обработчик, который перезаписывает состояние showModal с false на true и наоборот. Модалку рендерим по условиюЖ нажато что-то - показываем модалку.
 Компоненты модалки передаются как чилдрены через пропсы.
 
-[30:27](https://youtu.be/w6MW1szKuT4?t=1827)- Проблема z-index, как решать без костылей (порталы)
+[30:27](https://youtu.be/w6MW1szKuT4?t=1827)- <strong id='6'>Проблема z-index, как решать без костылей (порталы)</strong>
 
 1.Нужно в index.html создать портал под дивом root
 `<div id="modal-root"></div>`
@@ -102,7 +111,7 @@ const parsedTodos = JSON.parse(todos);
 
 В результате модалка рендериться в другом руте и решается проблема с z-index.
 
-[30:15](https://youtu.be/w6MW1szKuT4?t=2115)- Слушатель на keydown для Escape
+[30:15](https://youtu.be/w6MW1szKuT4?t=2115)- <strong id='7'>Слушатель на keydown для Escape</strong>
 1.В реакте нельзя повесить слушатель на window. Для этого используем componentDidMount(). Это один из немногих случаев, когда мы используем `addEventListener`
 
   <pre>componentDidMount() {
@@ -116,7 +125,7 @@ const parsedTodos = JSON.parse(todos);
 
 3.После этого модалка будет реагировать на escape даже при простом нажатии esc. Нужно снять обработчик window.addEventListener('keydown', this.handleKeyDown). Снимаем слушатель в `componentWillUnmount()`. Непочищенные слушатели валят производительность.
 
-[43:50](https://youtu.be/w6MW1szKuT4?t=2630)- Слушатель на клик по Backdrop
+[43:50](https://youtu.be/w6MW1szKuT4?t=2630)- <strong id='8'>Слушатель на клик по Backdrop</strong>
 
 1.Пишем обработчик и передам пропсом в бэкдроп.
 2.Исключить клики по лайтбоксу(e.currentTarget, e.target сравнить).
