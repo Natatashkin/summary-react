@@ -111,7 +111,7 @@ const parsedTodos = JSON.parse(todos);
 
 В результате модалка рендериться в другом руте и решается проблема с z-index.
 
-[30:15](https://youtu.be/w6MW1szKuT4?t=2115)- <strong id='7'>Слушатель на keydown для Escape</strong>
+[30:15](https://youtu.be/w6MW1szKuT4?t=2115)- <strong id='7'>Слушатель на keydown для Escape</strong><br/>
 1.В реакте нельзя повесить слушатель на window. Для этого используем componentDidMount(). Это один из немногих случаев, когда мы используем `addEventListener`
 
   <pre>componentDidMount() {
@@ -127,7 +127,7 @@ const parsedTodos = JSON.parse(todos);
 
 [43:50](https://youtu.be/w6MW1szKuT4?t=2630)- <strong id='8'>Слушатель на клик по Backdrop</strong>
 
-1.Пишем обработчик и передам пропсом в бэкдроп.
+1.Пишем обработчик и передам пропсом в бэкдроп. <br/>
 2.Исключить клики по лайтбоксу(e.currentTarget, e.target сравнить).
 
 - Таймер и утечка памяти с setState() без componentWillUnmount
