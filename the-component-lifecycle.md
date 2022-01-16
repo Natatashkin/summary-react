@@ -1,12 +1,30 @@
 <ol>
-<li><a href='#1'>МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</a></li>
-<li><a href='#2'>Редкие методы</a></li>
-<li><a href='#3'>Сохранение коллекции заметок в localStorage (componentDidMount и componentDidUpdate)</a></li>
-<li><a href='#4'>Получаем данные из localStorage при загрузке страницы</a></li>
-<li><a href='#5'>Модальное окно (componentDidMount и componentWillUnmount)</a></li>
-<li><a href='#6'>Проблема z-index, как решать без костылей (порталы)</a></li>
-<li><a href='#7'>Слушатель на keydown для Escape</a></li>
-<li><a href='#8'>Слушатель на клик по Backdrop</a></li>
+  <li><a href='#1'>МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</a></li>
+  <li><a href='#2'>Редкие методы</a></li>
+  <li><a href='#3'>Сохранение коллекции заметок в localStorage (componentDidMount и componentDidUpdate)</a></li>
+  <li><a href='#4'>Получаем данные из localStorage при загрузке страницы</a></li>
+  <li><a href='#5'>Модальное окно (componentDidMount и componentWillUnmount)</a>
+      <ul>
+        <li><a href='#6'>Проблема z-index, как решать без костылей (порталы)</a></li>
+        <li><a href='#7'>Слушатель на keydown для Escape</a></li>
+        <li><a href='#8'>Слушатель на клик по Backdrop</a></li>
+      </ul>
+  </li>
+  <li><a href='#9'>Таймер и утечка памяти с setState() без componentWillUnmount</a></li>
+  <li><a href='#10'>Табы (shouldComponentUpdate)</a>
+      <ul>
+        <li><a href='#11'>аналогия с колорпикером = главное знать технику</a></li>
+        <li><a href='#12'>убираем лишние рендеры после setState</a></li>
+        <li><a href='#13'>PureComponent</a></li>
+      </ul>
+  </li>
+  <li><a href='#14'>Рефакторим заметки</a>
+      <ul>
+        <li><a href='#15'>Выносим туду в отдельный компонент</a></li>
+        <li><a href='#16'>Кнопка-иконка и импорт SVG как ReactComponent</a></li>
+        <li><a href='#16'>Убираем редактор в модальное окн</a></li>
+      </ul>
+  </li>
 </ol>
 
 [00:25](https://youtu.be/w6MW1szKuT4?t=25) - <strong id="1">МЕТОДЫ ЖИЗНЕНОГО ЦИКЛА</strong>
@@ -38,9 +56,9 @@
 
 [06:37](https://youtu.be/w6MW1szKuT4?t=397) - <strong id='2'>Редкие методы</strong>
 
-- [shouldComponentUpdate()](https://ru.reactjs.org/docs/react-component.html#shouldcomponentupdate)
+- [shouldComponentUpdate(nextProps, nextState)](https://ru.reactjs.org/docs/react-component.html#shouldcomponentupdate)
   Этот метод нужен только для повышения производительности.
-- [getSnapshotBeforeUpdate()](https://ru.reactjs.org/docs/react-component.html#getsnapshotbeforeupdate)
+- [getSnapshotBeforeUpdate(prevProps, prevState)](https://ru.reactjs.org/docs/react-component.html#getsnapshotbeforeupdate)
   Позволяет вашему компоненту брать некоторую информацию из DOM (например, положение прокрутки) перед её возможным изменением.
 - [static getDerivedStateFromProps()](https://ru.reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
   Саша рекомендует не трогать.
@@ -130,11 +148,130 @@ const parsedTodos = JSON.parse(todos);
 1.Пишем обработчик и передам пропсом в бэкдроп. <br/>
 2.Исключить клики по лайтбоксу(e.currentTarget, e.target сравнить).
 
-- Таймер и утечка памяти с setState() без componentWillUnmount
-- Табы (shouldComponentUpdate)
-  - аналогия с колорпикером = главное знать технику
-  - убираем лишние рендеры после setState
-- Рефакторим заметки
-  - Выносим туду в отдельный компонент
-  - Кнопка-иконка и импорт SVG как ReactComponent
-  - Убираем редактор в модальное окно
+[48:10](https://youtu.be/w6MW1szKuT4?t=2890)- <strong id='9'>Таймер и утечка памяти с setState() без componentWillUnmount</strong>
+
+<pre><code>
+export default class Clock extends Component {
+  state = {
+    time: new Date().toLocaleTimeString(),
+  };
+
+  intervalId = null;
+
+  componentDidMount() {
+    console.log('setInterval');
+
+    this.intervalId = setInterval(
+      () => this.setState({ time: new Date().toLocaleTimeString() }),
+      1000,
+    );
+  }
+
+// при скрытии таймера нбх убрать intervalId, т.к. он продолжает работать даже на размонтированном компоненте, что приводит к утечке памяти
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+
+  render() {
+    return <div className="Clock__face">{this.state.time}</div>;
+  }
+}
+</code></pre>
+
+[54:44](https://youtu.be/w6MW1szKuT4?t=3284)- <strong id='10'>Табы (shouldComponentUpdate)</strong>
+
+[57:00](https://youtu.be/w6MW1szKuT4?t=3420)- <em id='11'>аналогия с колорпикером = главное знать технику</em>
+
+[59:03](https://youtu.be/w6MW1szKuT4?t=3546)- <em id='12'>убираем лишние рендеры после setState</em>
+
+При клике на одну и ту же кнопку неск раз подряд, перерендеривается разметка. Мы можем остановить ре-рендер при одинаковом стайте. Используем метод `shouldComponentUpdate()`, но лучше не использовать.
+Этот метод вызывается перед методом render() после обновления стейта. Если он вернёт false, то ре-рендер не произойдёт.
+
+<pre><code>
+shouldComponentUpdate(nextProps, nextState) {
+  return nextState.activeTabIdx !== this.state.activeTabIdx;
+}
+</code></pre>
+
+[1:04:16](https://youtu.be/w6MW1szKuT4?t=3856) - <em id='13'>PureComponent</em>
+
+PureComponent - чистый компонент. У него под капотом реализовано `shouldComponentUpdate()` и идёт поверхнорстное сравнение всех пропсов. Импортировать в файл вместо Component. Лучше использовать его, если нужно контролировать ре-рендер.
+
+<pre><code>
+import React, { PureComponent } from 'react';
+
+export default class Tabs extends PureComponent {}
+</code></pre>
+
+[1:08:44](https://youtu.be/w6MW1szKuT4?t=4122)- <strong id='14'>Рефакторим заметки</strong>
+
+[01:09:13](https://youtu.be/w6MW1szKuT4?t=4153) - <em id='15'>Выносим туду в отдельный компонент</em>
+
+<pre><code>
+<Todo
+  text={text}
+  completed={completed}
+  onToggleCompleted={() => onToggleCompleted(id)} //Происходит привязка функции к id, а в компонент уже прийдёт ссылка на вызов этой функции.
+  onDelete={() => onDeleteTodo(id)}
+/>
+</code></pre>
+
+[1:14:07](https://youtu.be/w6MW1szKuT4?t=4448) - <em id='16'>Кнопка-иконка и импорт SVG как ReactComponent</em>
+<br/>
+1.Создаём компонент кнопку IconButton:
+
+<pre><code>
+const IconButton = ({ children, onClick, ...allyProps }) => (
+  <button type="button" className="IconButton" onClick={onClick} {...allyProps}>
+    {children}
+  </button>
+);
+
+IconButton.defaultProps = {
+  onClick: () => null,
+  children: null,
+};
+
+IconButton.propTypes = {
+  onClick: PropTypes.func,
+  children: PropTypes.node,
+  'aria-label': PropTypes.string.isRequired,
+};
+
+export default IconButton;
+</code></pre>
+
+2.передаём пропсы в компонент
+`<IconButton onClick={this.toggleModal} aria-label="Добавить todo"></IconButton>`
+3.В папке `components` делаем папку icons в которой лежат все svg. Спрайт леоать не обязательно.
+Импортируем svg как реакт компонент:
+`import {ReactComponent as AddIcon} from ".. путь к иконке"`, при этом `AddIcon` - произвольное название компонента
+Импортируем в файл где вставляем в компонет кнопку.
+4.Вставляем в кнопку как компонент то, чот мы импортировали
+
+<pre><code>
+<IconButton onClick={this.toggleModal} aria-label="Добавить todo">
+          <AddIcon width="40" height="40" fill="#fff" />
+        </IconButton>
+</code></pre>
+
+[1:21:44](https://youtu.be/w6MW1szKuT4?t=4904) - <em id='17'>Убираем редактор в модальное окно</em>
+
+Если вызывать функцмю закрытия модалки в функции добавления тудушек, получается более связанный код. Это можно сделать в методе componentDidUpdate, добавив проверки.
+
+<pre><code>
+ if (nextTodos.length > prevTodos.length && prevTodos.length !== 0) {
+      this.toggleModal();
+    }
+    </code></pre>
+
+Что грузит апп? Проверка одного объекта с другим по всем свойствам.
+
+[1:31:30](https://youtu.be/w6MW1szKuT4?t=5490)- aria-label
+
+aria-label-атрибут доступности. Реакт пропускаеи с тире в названии. Мы его передаём как пропс, в компоненте собираем как ...allyProps и потом в компонент распыляем. Это обязательно для кнопок-иконок.
+
+<pre><code>
+const IconButton = ({ children, onClick, ...allyProps }) => (
+  <button type="button" className="IconButton" onClick={onClick} {...allyProps}>
+  </code></pre>
