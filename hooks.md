@@ -27,7 +27,7 @@
 - [Хуки для HTTP-запросов](https://github.com/tannerlinsley/react-query)
 - [Кастомные хуки](https://github.com/streamich/react-use)
 
-[3:59](https://youtu.be/S1NrJZscSrc?t=234) - ###useState
+[3:59](https://youtu.be/S1NrJZscSrc?t=234) - ### useState
 
     - SignupForm
         - Одно значение = один useState
