@@ -43,6 +43,7 @@ export default function SignupForm() {
   };
 
   return (
+      <code>
     <form className={styles.form} autoComplete="off">
       <label className={styles.label}>
         <span>Почта</span>
@@ -55,7 +56,7 @@ export default function SignupForm() {
       </label>
 
       <button type="submit">Зарегистрироваться</button>
-    </form>
+    </form> </code>
   );
 }
 </code></pre>
