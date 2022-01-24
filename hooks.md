@@ -43,21 +43,19 @@ export default function SignupForm() {
   };
 
   return (
-      
-    <pre><form className={styles.form} autoComplete="off"></pre>
-
-      <label className={styles.label}>
-        <span>Почта</span>
-        <input
+    &lt;form className={styles.form} autoComplete="off"&gt;
+      &lt;label className={styles.label}&gt;
+        &lt;span&gt;Почта&lt;/span&gt;
+        &lt;input
           type="email"
           name="email"
           onChange={handleChange}
           value={email}
-        />
-      </label>
+        /&gt;
+      &lt;/label&gt;
 
-      <button type="submit">Зарегистрироваться</button>
-    </form>
+      &lt;button type="submit"&gt;Зарегистрироваться&lt;/button&gt;
+    &lt;/form&gt;
 
 );
 }
