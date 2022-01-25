@@ -179,44 +179,59 @@ export default function SignupForm() {
 
   `const intervalId = useRef(null)` - вернёт свойство {current: null} или что мы туда впишем.
 
-    <pre><code>
-    export default function Clock() {
-    const [time, setTime] = useState(() => new Date());
-    const intervalId = useRef(null); - Первый рендер
-  
-    useEffect(() => {
-        // intervalId.current - записываем id интервала
-      intervalId.current = setInterval(() => {
-        console.log('Это интервал каждые 2000ms ' + Date.now());
-        setTime(new Date());
-      }, 2000);
-  
+      <pre><code>
+      export default function Clock() {
+      const [time, setTime] = useState(() => new Date());
+      const intervalId = useRef(null); - Первый рендер
+
+      useEffect(() => {
+          // intervalId.current - записываем id интервала
+        intervalId.current = setInterval(() => {
+          console.log('Это интервал каждые 2000ms ' + Date.now());
+          setTime(new Date());
+        }, 2000);
+
   // Последний рендер
-      return () => {
-        console.log('Это функция очистки перед следующим вызовом useEffect');
-        stop();
+  return () => {
+  console.log('Это функция очистки перед следующим вызовом useEffect');
+  stop();
+  };
+  }, []);
+
+      const stop = () => {
+        clearInterval(intervalId.current);
       };
-    }, []);
-  
-    const stop = () => {
-      clearInterval(intervalId.current);
-    };
-  
-    return (
-      &lt;div className={styles.container}&gt;
-        &lt;p className={styles.clockface}&gt;
-          Текущее время: {time.toLocaleTimeString()}
-        &lt;/p&gt;
-        &lt;button type="button" onClick={stop}&gt;
-          Остановить
-        &lt;/button&gt;
-      &lt;/div&gt;
-    );
+
+      return (
+        &lt;div className={styles.container}&gt;
+          &lt;p className={styles.clockface}&gt;
+            Текущее время: {time.toLocaleTimeString()}
+          &lt;/p&gt;
+          &lt;button type="button" onClick={stop}&gt;
+            Остановить
+          &lt;/button&gt;
+        &lt;/div&gt;
+      );
+
   }
-    </code></pre>
+  </code></pre>
 
   <br/> - [1:34:25](https://youtu.be/S1NrJZscSrc?t=5665) - Последний рендер
   Пример выше. То, что возвращается из useEffect віполняется перед размонтированием компонента.
+
+[](https://youtu.be/S1NrJZscSrc?t=6521) - Вопросы
+
+- [1:48:36](https://youtu.be/S1NrJZscSrc?t=6521) - когда в пропс передаётся вызов функции, а когда колбек?<br/>
+  1. когда нам нужно вызвать функцию прям здесь и сейчас - вызов функции: {function()}<br/>
+  2. когда нам нужно, чтобы функция вызвалась по какому-то событию, мы передаём вызов по ссылке `{()=> function()}` <br/>
+- [1:52:53](https://youtu.be/S1NrJZscSrc?t=6773) - как передавать один и тот же фетч в хуках в разных участках кода?
+  <pre>useEffect(() => {
+  // тут всё, что касается http
+  }, [key, state]); // когда это вызвать</pre>
+
+       например есть кнопка:
+
+  <pre>&lt;button onClick={()=> setPage(page=> page+1)}&gt;Load more&lt;/button&gt;</pre>
 
 []() - useContext
 
