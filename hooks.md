@@ -24,7 +24,8 @@
   - <a href="17">как передавать один и тот же фетч в хуках в разных участках кода?</a>
 - <a href="18">useContext</a>
   - <a href="19">UserMenu</a>
-  - <a href="20">Cделать модалку на хуках</a> -<a href="21">Доп вебинар, Виджет новостей</a>
+  - <a href="20">Cделать модалку на хуках</a>
+- <a href="21">Доп вебинар, Виджет новостей</a>
   - <a href="22">форма</a>
   - <a href="23">fetch</a>
   - <a href="24">кнопка Load More</a>
@@ -263,7 +264,7 @@ export default function SignupForm() {
 - <span id="19">UserMenu</span>, с хуками работают react-hook-form
   [2:13:35](https://youtu.be/S1NrJZscSrc?t=8015) - <span id="20">Cделать модалку на хуках</span>
 
-<strong id="21">Доп вебинар, Виджет новостей</strong>
+## <strong id="21">Доп вебинар, Виджет новостей</strong>
 
 [1:11:06](https://youtu.be/GQoPaL1BgaM?t=4266) - <span id="22">форма</span><br/>
 [1:14:26](https://youtu.be/GQoPaL1BgaM?t=4458) - <span id="23">fetch</span><br/>
