@@ -229,11 +229,14 @@ export default function SignupForm() {
   // тут всё, что касается http
   }, [key, state]); // когда это вызвать</pre>
 
-       например есть кнопка:
-
+  например есть кнопка:
   <pre>&lt;button onClick={()=> setPage(page=> page+1)}&gt;Load more&lt;/button&gt;</pre>
 
-[]() - useContext
+  Мы просто меняем значение страницы по клику, а состояние контролируется `useEffect`.
 
-- []() UserMenu
+[1:58:12](https://youtu.be/S1NrJZscSrc?t=7092) - useContext
+
+- UserMenu, с хуками работают react-hook-form
+  [2:13:35](https://youtu.be/S1NrJZscSrc?t=8015) - сделать модалку на хуках
+
   []() - Покемоны
