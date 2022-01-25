@@ -263,7 +263,7 @@ export default function SignupForm() {
 - <span id="19">UserMenu</span>, с хуками работают react-hook-form
   [2:13:35](https://youtu.be/S1NrJZscSrc?t=8015) - <span id="20">Cделать модалку на хуках</span>
 
-## Доп вебинар, Виджет новостей<span id="21"></span>
+## <span id="21">Доп вебинар, Виджет новостей</span>
 
 [1:11:06](https://youtu.be/GQoPaL1BgaM?t=4266) - <span id="22">форма</span>
 [1:14:26](https://youtu.be/GQoPaL1BgaM?t=4458) - <span id="23">fetch</span>
