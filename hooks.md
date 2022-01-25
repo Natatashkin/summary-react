@@ -240,3 +240,14 @@ export default function SignupForm() {
   [2:13:35](https://youtu.be/S1NrJZscSrc?t=8015) - сделать модалку на хуках
 
   []() - Покемоны
+
+## Доп вебинар, Виджет новостей
+
+[1:11:06](https://youtu.be/GQoPaL1BgaM?t=4266) - форма.
+[1:14:26](https://youtu.be/GQoPaL1BgaM?t=4458) - fetch
+[1:28:40](https://youtu.be/GQoPaL1BgaM?t=5320) - кнопка Load More
+[1:31:12](https://youtu.be/GQoPaL1BgaM?t=5473) - Ловим ошибку
+
+- [1:32:48](https://youtu.be/GQoPaL1BgaM?t=5568) - Решаем проблему постоянной магической отправки фетчей - решайте сами короче, читайте доки.
+
+[1:40:33](https://youtu.be/GQoPaL1BgaM?t=5973) - Контекст
