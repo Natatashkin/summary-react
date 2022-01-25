@@ -263,13 +263,13 @@ export default function SignupForm() {
 - <span id="19">UserMenu</span>, с хуками работают react-hook-form
   [2:13:35](https://youtu.be/S1NrJZscSrc?t=8015) - <span id="20">Cделать модалку на хуках</span>
 
-## <span id="21">Доп вебинар, Виджет новостей</span>
+<strong id="21">Доп вебинар, Виджет новостей</strong>
 
-[1:11:06](https://youtu.be/GQoPaL1BgaM?t=4266) - <span id="22">форма</span>
-[1:14:26](https://youtu.be/GQoPaL1BgaM?t=4458) - <span id="23">fetch</span>
-[1:28:40](https://youtu.be/GQoPaL1BgaM?t=5320) - <span id="24">кнопка Load More</span>
-[1:31:12](https://youtu.be/GQoPaL1BgaM?t=5473) - <span id="25">Ловим ошибку</span>
+[1:11:06](https://youtu.be/GQoPaL1BgaM?t=4266) - <span id="22">форма</span><br/>
+[1:14:26](https://youtu.be/GQoPaL1BgaM?t=4458) - <span id="23">fetch</span><br/>
+[1:28:40](https://youtu.be/GQoPaL1BgaM?t=5320) - <span id="24">кнопка Load More</span><br/>
+[1:31:12](https://youtu.be/GQoPaL1BgaM?t=5473) - <span id="25">Ловим ошибку</span><br/>
 
 - [1:32:48](https://youtu.be/GQoPaL1BgaM?t=5568) - <span id="26">Решаем проблему постоянной магической отправки фетчей</span> - решайте сами короче, читайте доки.
 
-[1:40:33](https://youtu.be/GQoPaL1BgaM?t=5973) - <span id="27">Контекст</span>
+[1:40:33](https://youtu.be/GQoPaL1BgaM?t=5973) - <span id="27">Контекст</span><br/>
