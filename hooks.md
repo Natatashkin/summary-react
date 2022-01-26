@@ -52,6 +52,7 @@
 - Мемоизация вычислений с useMemo
 - [Hook flow](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
 
+<hr />
 [3:59](https://youtu.be/S1NrJZscSrc?t=234) - <strong id='1'> useState </strong>
 
 - SignupForm
@@ -274,3 +275,43 @@ export default function SignupForm() {
 - [1:32:48](https://youtu.be/GQoPaL1BgaM?t=5568) - <span id="26">Решаем проблему постоянной магической отправки фетчей</span> - решайте сами короче, читайте доки.
 
 [1:40:33](https://youtu.be/GQoPaL1BgaM?t=5973) - <span id="27">Контекст</span><br/>
+
+<hr/>
+
+[0:06](https://youtu.be/KslUxJrXY3Y?t=6) - <strong id="">useEffect и пропуск первого рендера</strong>
+Нужен, например при http-запросах, если запросы происходить должны только при апдейтах.
+
+<b>Вариант для фетчей</b>
+<code>
+const[query, setQuery] = useState('');
+
+useEffect(()=> {
+if(query === '') {
+return;
+}
+
+fetch();
+}, [query])
+</code>
+
+<b>В других случаях</b>
+<code>
+const firstRender = useRef(true);
+
+useEffect(()=> {
+if(firstRender.current) {
+firstRender.current = false;
+return;
+}
+})
+</code>
+
+- Покемоны
+  - useState
+  - useEffect
+- Счётчик c useReducer
+  - step
+  - state + step
+  - action
+- Мемоизация вычислений с useMemo
+- [Hook flow](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
