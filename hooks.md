@@ -1,37 +1,37 @@
 # Хуки, часть 1
 
 - [Документация](https://ru.reactjs.org/docs/hooks-intro.html)
-- <a href="1">useState</a>
-  - <a href="1">SignupForm</a>
-    - <a href="2">Одно значение = один useState</a>
-  - <a href="3">ColorPicker</a>
-- <a href="4">useEffect</a>
-  - <a href="4">Counter</a>
-    - <a href="4">Каждый рендер</a>
-    - <a href="4">Каждый рендер при изменении какого-то стейта или пропса</a>
-  - <a href="5">SignUpForm</a>
-    - <a href="6">localStorage</a>
-    - <a href="7">lazy state initialization</a>
-    - <a href="8">Кастомный хук useLocalStorage</a>
-- <a href="9">useRef</a>
-  - <a href="10">Clock</a>
-    - <a href="11">проблема intervalId</a>
-    - <a href="12">решение:</a>
-    - <a href="13">Первый рендер</a>
-    - <a href="14">Последний рендер</a>
-- <a href="15">Вопросы</a>
-  - <a href="16">когда в пропс передаётся вызов функции, а когда колбек?</a>
-  - <a href="17">как передавать один и тот же фетч в хуках в разных участках кода?</a>
-- <a href="18">useContext</a>
-  - <a href="19">UserMenu</a>
-  - <a href="20">Cделать модалку на хуках</a>
-- <a href="21">Доп вебинар, Виджет новостей</a>
-  - <a href="22">форма</a>
-  - <a href="23">fetch</a>
-  - <a href="24">кнопка Load More</a>
-  - <a href="25">Ловим ошибку</a>
-  - <a href="26">Решаем проблему постоянной магической отправки фетчей</a>
-  - <a href="27">Контекст</a>
+- <a href="#1">useState</a>
+  - <a href="#1">SignupForm</a>
+    - <a href="#2">Одно значение = один useState</a>
+  - <a href="#3">ColorPicker</a>
+- <a href="#4">useEffect</a>
+  - <a href="#4">Counter</a>
+    - <a href="#4">Каждый рендер</a>
+    - <a href="#4">Каждый рендер при изменении какого-то стейта или пропса</a>
+  - <a href="#5">SignUpForm</a>
+    - <a href="#6">localStorage</a>
+    - <a href="#7">lazy state initialization</a>
+    - <a href="#8">Кастомный хук useLocalStorage</a>
+- <a href="#9">useRef</a>
+  - <a href="#10">Clock</a>
+    - <a href="#11">проблема intervalId</a>
+    - <a href="#12">решение:</a>
+    - <a href="#13">Первый рендер</a>
+    - <a href="#14">Последний рендер</a>
+- <a href="#15">Вопросы</a>
+  - <a href="#16">когда в пропс передаётся вызов функции, а когда колбек?</a>
+  - <a href="#17">как передавать один и тот же фетч в хуках в разных участках кода?</a>
+- <a href="#18">useContext</a>
+  - <a href="#19">UserMenu</a>
+  - <a href="#20">Cделать модалку на хуках</a>
+- <a href="#21">Доп вебинар, Виджет новостей</a>
+  - <a href="#22">форма</a>
+  - <a href="#23">fetch</a>
+  - <a href="#24">кнопка Load More</a>
+  - <a href="#25">Ловим ошибку</a>
+  - <a href="#26">Решаем проблему постоянной магической отправки фетчей</a>
+  - <a href="#27">Контекст</a>
 
 ## Библиотеки
 
