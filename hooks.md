@@ -282,7 +282,8 @@ export default function SignupForm() {
 Нужен, например при http-запросах, если запросы происходить должны только при апдейтах.
 
 <b>Вариант для фетчей</b>
-<code>
+
+<pre><code>
 const[query, setQuery] = useState('');
 
 useEffect(()=> {
@@ -292,10 +293,11 @@ return;
 
 fetch();
 }, [query])
-</code>
+</code></pre>
 
 <b>В других случаях</b>
-<code>
+
+<pre><code>
 const firstRender = useRef(true);
 
 useEffect(()=> {
@@ -304,7 +306,7 @@ firstRender.current = false;
 return;
 }
 })
-</code>
+</code></pre>
 
 - Покемоны
   - useState
