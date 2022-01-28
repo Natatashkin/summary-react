@@ -41,14 +41,14 @@
 
 # Хуки, часть 2
 
-- useEffect и пропуск первого рендера
-- Покемоны
-  - useState
-  - useEffect
-- Счётчик c useReducer
-  - step
-  - state + step
-  - action
+- <a href="#28">useEffect и пропуск первого рендера</a>
+- <a href="#">Покемоны</a>
+  - <a href="#">useState</a>
+  - <a href="#">useEffect</a>
+- <a href="#">Счётчик c useReducer</a>
+  - <a href="#">step</a>
+  - <a href="#">state + step</a>
+  - <a href="#">action</a>
 - Мемоизация вычислений с useMemo
 - [Hook flow](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
 
@@ -278,7 +278,7 @@ export default function SignupForm() {
 
 <hr/>
 
-[0:06](https://youtu.be/KslUxJrXY3Y?t=6) - <strong id="">useEffect и пропуск первого рендера</strong>
+[0:06](https://youtu.be/KslUxJrXY3Y?t=6) - <strong id="28">useEffect и пропуск первого рендера</strong>
 Нужен, например при http-запросах, если запросы происходить должны только при апдейтах.
 
 <b>Вариант для фетчей</b>
@@ -287,11 +287,11 @@ export default function SignupForm() {
 const[query, setQuery] = useState('');
 
 useEffect(()=> {
-if(query === '') {
-return;
-}
+  if(query === '') {
+    return;
+  }
 
-fetch();
+  fetch();
 }, [query])
 </code></pre>
 
@@ -301,19 +301,84 @@ fetch();
 const firstRender = useRef(true);
 
 useEffect(()=> {
-if(firstRender.current) {
-firstRender.current = false;
-return;
-}
+  if(firstRender.current) {
+    firstRender.current = false;
+    return;
+  }
 })
 </code></pre>
 
-- Покемоны
-  - useState
-  - useEffect
-- Счётчик c useReducer
-  - step
-  - state + step
-  - action
-- Мемоизация вычислений с useMemo
-- [Hook flow](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
+[11:20](https://youtu.be/KslUxJrXY3Y?t=680) - Покемоны
+
+- [11:20](https://youtu.be/KslUxJrXY3Y?t=680) - useState
+- [16:57](https://youtu.be/KslUxJrXY3Y?t=1017) - useEffect
+  В асинхронном коде порядок обновлений имеет значение [32:11](https://youtu.be/KslUxJrXY3Y?t=1930) - Коварный смех за кадром :)
+  [45:26](https://youtu.be/KslUxJrXY3Y?t=2726) - Счётчик c useReducer
+  <pre><code>
+  const [state, dispatch] = useReducer(reducer, initialArg, init);
+  </code></pre>
+
+  [Доки](https://ru.reactjs.org/docs/hooks-reference.html#usereducer)
+  Альтернатива для useState. Принимает редюсер типа (state, action) => newState и возвращает текущее состояние в паре с методом dispatch.
+  `reducer` - функция редьюса
+  `initialArg` - Начальное значение
+  `init` - используется, если первоначальное состояние `initialArg` нужно вычислять. чтобы это произошло 1 раз [1:00:07](https://youtu.be/KslUxJrXY3Y?t=3611)
+
+Пример:
+
+<pre><code>
+import { useReducer } from 'react';
+import styles from './Counter.module.css';
+
+function countReducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { ...state, count: state.count + action.payload };
+
+    case 'decrement':
+      return { ...state, count: state.count - action.payload };
+
+    default:
+      throw new Error(`Unsuported action type ${action.type}`);
+  }
+}
+
+export default function Counter() {
+  const [state, dispatch] = useReducer(countReducer, {
+    count: 0,
+  });
+
+  return (
+    &lt;div className={styles.container}&gt;
+      &lt;p className={styles.value}>{state.count}&lt;/p&gt;
+      &lt;button
+        className={styles.btn}
+        type="button"
+        onClick={() => dispatch({ type: 'increment', payload: 1 })}
+      &gt;
+        Увеличить
+      &lt;/button&gt;
+
+      &lt;button
+        className={styles.btn}
+        type="button"
+        onClick={() => dispatch({ type: 'decrement', payload: 1 })}
+      &gt;
+        Уменьшить
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+
+[1:04:22](https://youtu.be/KslUxJrXY3Y?t=3859)- Мемоизация вычислений с useMemo.
+`useMemo` помнит только 1 предыдущий рендер. ТОлько синхронный код.
+Из `useEffect` ничего не возвращается, из `useMemo` - возвращается результат во внешний код.
+
+[пример из лекции](https://github.com/luxplanjay/react-21-22/blob/08-%D1%85%D1%83%D0%BA%D0%B8-%D1%87%D0%B0%D1%81%D1%82%D1%8C-2/src/components/Friends.js)
+
+[1:19:00](https://youtu.be/KslUxJrXY3Y?t=4740) - как пользоваться и для чего Profiler в хрому в девтулзах.
+Рендер должен происходить за 16 ms. 1000ms/60 кадров. Если дольше, приложение начинает тупить.
+[1:27:12](https://youtu.be/KslUxJrXY3Y?t=5232) - Космпоненты, которые перерендериваются в родительской функции, но не изщменяются, можно обетнуть при экспорте в memo()
+
+[1:33:07](https://youtu.be/KslUxJrXY3Y?t=5587) - useLayoutEffects
