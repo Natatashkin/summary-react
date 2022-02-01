@@ -314,6 +314,7 @@ useEffect(()=> {
 - [11:20](https://youtu.be/KslUxJrXY3Y?t=680) - <span id="30">useState</span>
 - [16:57](https://youtu.be/KslUxJrXY3Y?t=1017) - <span id="31">useEffect</span>
   В асинхронном коде порядок обновлений имеет значение [32:11](https://youtu.be/KslUxJrXY3Y?t=1930) - Коварный смех за кадром :)
+  <br/>
   [45:26](https://youtu.be/KslUxJrXY3Y?t=2726) -<strong id="32">Счётчик c useReducer</strong>
   <br/>
 
