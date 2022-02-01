@@ -42,14 +42,14 @@
 # Хуки, часть 2
 
 - <a href="#28">useEffect и пропуск первого рендера</a>
-- <a href="#">Покемоны</a>
-  - <a href="#">useState</a>
-  - <a href="#">useEffect</a>
-- <a href="#">Счётчик c useReducer</a>
-  - <a href="#">step</a>
-  - <a href="#">state + step</a>
-  - <a href="#">action</a>
-- Мемоизация вычислений с useMemo
+- <a href="#29">Покемоны</a>
+  - <a href="#30">useState</a>
+  - <a href="#31">useEffect</a>
+- <a href="#32">Счётчик c useReducer</a>
+- <a href="#33">Мемоизация вычислений с useMemo</a>
+- <a href="#34">Profiler</a>
+- <a href="#35">Космпоненты, которые перерендериваются в родительской функции, но не изщменяются</a>
+- <a href="#36">useLayoutEffects</a>
 - [Hook flow](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
 
 <hr />
@@ -308,15 +308,18 @@ useEffect(()=> {
 })
 </code></pre>
 
-[11:20](https://youtu.be/KslUxJrXY3Y?t=680) - Покемоны
+[11:20](https://youtu.be/KslUxJrXY3Y?t=680) -<strong id="29">Покемоны</strong>
+<br/>
 
-- [11:20](https://youtu.be/KslUxJrXY3Y?t=680) - useState
-- [16:57](https://youtu.be/KslUxJrXY3Y?t=1017) - useEffect
+- [11:20](https://youtu.be/KslUxJrXY3Y?t=680) - <span id="30">useState</span>
+- [16:57](https://youtu.be/KslUxJrXY3Y?t=1017) - <span id="31">useEffect</span>
   В асинхронном коде порядок обновлений имеет значение [32:11](https://youtu.be/KslUxJrXY3Y?t=1930) - Коварный смех за кадром :)
-  [45:26](https://youtu.be/KslUxJrXY3Y?t=2726) - Счётчик c useReducer
-  <pre><code>
-  const [state, dispatch] = useReducer(reducer, initialArg, init);
-  </code></pre>
+  [45:26](https://youtu.be/KslUxJrXY3Y?t=2726) -<strong id="32">Счётчик c useReducer</strong>
+  <br/>
+
+    <pre><code>
+    const [state, dispatch] = useReducer(reducer, initialArg, init);
+    </code></pre>
 
   [Доки](https://ru.reactjs.org/docs/hooks-reference.html#usereducer)
   Альтернатива для useState. Принимает редюсер типа (state, action) => newState и возвращает текущее состояние в паре с методом dispatch.
@@ -371,14 +374,15 @@ export default function Counter() {
 }
 </code></pre>
 
-[1:04:22](https://youtu.be/KslUxJrXY3Y?t=3859)- Мемоизация вычислений с useMemo.
+[1:04:22](https://youtu.be/KslUxJrXY3Y?t=3859)- <strong id="33">Мемоизация вычислений с useMemo</strong>
+<br/>
 `useMemo` помнит только 1 предыдущий рендер. ТОлько синхронный код.
 Из `useEffect` ничего не возвращается, из `useMemo` - возвращается результат во внешний код.
 
 [пример из лекции](https://github.com/luxplanjay/react-21-22/blob/08-%D1%85%D1%83%D0%BA%D0%B8-%D1%87%D0%B0%D1%81%D1%82%D1%8C-2/src/components/Friends.js)
 
-[1:19:00](https://youtu.be/KslUxJrXY3Y?t=4740) - как пользоваться и для чего Profiler в хрому в девтулзах.
+[1:19:00](https://youtu.be/KslUxJrXY3Y?t=4740) - <span id="34">Profiler</span>как пользоваться и для чего Profiler в хрому в девтулзах.
 Рендер должен происходить за 16 ms. 1000ms/60 кадров. Если дольше, приложение начинает тупить.
-[1:27:12](https://youtu.be/KslUxJrXY3Y?t=5232) - Космпоненты, которые перерендериваются в родительской функции, но не изщменяются, можно обетнуть при экспорте в memo()
+[1:27:12](https://youtu.be/KslUxJrXY3Y?t=5232) - <span id="35">Космпоненты, которые перерендериваются в родительской функции, но не изщменяются, можно обетнуть при экспорте в memo()</span>
 
-[1:33:07](https://youtu.be/KslUxJrXY3Y?t=5587) - useLayoutEffects
+[1:33:07](https://youtu.be/KslUxJrXY3Y?t=5587) - <span id="36">useLayoutEffects</span>
